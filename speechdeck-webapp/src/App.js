@@ -28,6 +28,7 @@ function App() {
   const [name, setName] = useState('Macro-Name');
   const [message, setMessage] = useState();
   const [macroList, setMacroList] = useState(['default']);
+  var layout = [];
 
   useEffect(() => setTimeout( () => listMacros(), 500), []);
 
@@ -70,6 +71,12 @@ function App() {
     console.log('files uploaded!');
   }
 
+  const uploadLayout = () => {
+    const uid = Firebase.auth().currentUser.uid;
+    console.log(layout);
+    Firebase.database().ref(`/${uid}/Layout`).set(layout);
+  }
+
   const changeName = (event) => {
     setName(event.target.value);
   }
@@ -80,13 +87,53 @@ function App() {
 
       <div id="firebaseui-auth-container"></div>
       <div id="loader">Signed in as {Firebase.auth().currentUser?.displayName}</div>
-      
-      <div className='Spacer'/>
-      <div className='Spacer'/>
+
+      <div className='BigSpacer'/>
 
       <div className='Border'>
+        <Button className='BigButton' onClick={addData}>Upload Macro</Button>
+        <div className='WideBorder'>
+          <div className='Spacer'/>
+          <DropdownButton id="dropdown-basic-button" title="Select Existing Macro" onSelect={ macro => setName(macro) }>
+            {
+              macroList.map( macro => {
+                return (
+                  <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+                );
+              })
+            }
+          </DropdownButton>
+          <div className='Spacer'/>
+            
+          <label htmlFor="macroInput">Macro Name: </label>
+          <input id='MacroInput' type='text' value={name} onChange={changeName} />
+          <div className='Spacer'/>
+        </div>
+
         <div className='Spacer'/>
-        <DropdownButton id="dropdown-basic-button" title="Select Existing Macro" onSelect={ macro => setName(macro) }>
+
+        <div className='WideBorder'>
+          <div className='Row'>
+            <div className='Column'>
+              <FileUpload setter={setAudioFile} message = 'Click to Select Audio'/>
+              <p> {audioFile?.fileName ?? 'No File'} Selected </p>
+            </div>
+            <div className='Column'>
+              <FileUpload setter={setImageFile} message = 'Click to Select Image'/>
+              <p> {imageFile?.fileName ?? 'No File'} Selected </p>
+            </div>
+          </div>
+        </div>
+        <p>{message}</p>
+      </div>
+
+      
+      <div className='BigSpacer'/>
+
+      <div className='Border'>
+        <Button className='BigButton' onClick={uploadLayout}>Upload Layout</Button>
+        <div className='Row'>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 1" onSelect={ macro => {layout[0] = macro;} }>
           {
             macroList.map( macro => {
               return (
@@ -95,29 +142,91 @@ function App() {
             })
           }
         </DropdownButton>
-        <div className='Spacer'/>
-          
-        <label htmlFor="macroInput">Macro Name: </label>
-        <input id='MacroInput' type='text' value={name} onChange={changeName} />
-        <div className='Spacer'/>
-      </div>
-
-      <div className='Spacer'/>
-
-      <div className='Border'>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 2" onSelect={ macro => {layout[1] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 3" onSelect={ macro => {layout[2] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 4" onSelect={ macro => {layout[3] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 5" onSelect={ macro => {layout[4] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        </div>
         <div className='Row'>
-          <div className='Column'>
-            <FileUpload setter={setAudioFile} message = 'Click to Select Audio'/>
-            <p> {audioFile?.fileName ?? 'No File'} Selected </p>
-          </div>
-          <div className='Column'>
-            <FileUpload setter={setImageFile} message = 'Click to Select Image'/>
-            <p> {imageFile?.fileName ?? 'No File'} Selected </p>
-          </div>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 6" onSelect={ macro => {layout[5] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 7" onSelect={ macro => {layout[6] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 8" onSelect={ macro => {layout[7] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 9" onSelect={ macro => {layout[8] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 10" onSelect={ macro => {layout[9] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
         </div>
       </div>
-      <p>{message}</p>
-      <Button onClick={addData}>Upload Files</Button>
     </div>
   );
 }

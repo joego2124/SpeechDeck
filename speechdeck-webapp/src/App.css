@@ -44,13 +44,35 @@
   margin-top: 10px;
 }
 
+.BigSpacer {
+  margin-top: 30px;
+}
+
 .Border {
   border: #282c34 ;
   border-radius: 10px;
   border-style: solid;
   width: min-content;
   margin: auto;
+  padding: 5px;
+}
+
+.WideBorder {
+  border: #282c34 ;
+  border-radius: 5px;
+  border-style: solid;
+  margin: auto;
+  padding: 5px;
+}
+
+.PaddedButton {
   padding: 10px;
+}
+
+.BigButton {
+  margin: 15px;
+  background-color: darkgreen;
+  padding: 15px;
 }
 
 @keyframes App-logo-spin {
