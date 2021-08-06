@@ -18,10 +18,9 @@ function App() {
   // Initialize the FirebaseUI Widget using Firebase.
   var ui = firebaseui.auth.AuthUI.getInstance() ?? new firebaseui.auth.AuthUI(Firebase.auth());
 
-  if(ui.isPendingRedirect()) {
+  if(Firebase.auth().currentUser == undefined) {
     ui.start('#firebaseui-auth-container', uiConfig);
   }
-
 
   const [imageFile, setImageFile] = useState();
   const [audioFile, setAudioFile] = useState();
@@ -65,8 +64,9 @@ function App() {
     listMacros()
 
     const uid = Firebase.auth().currentUser.uid;
-    Firebase.storage().ref(`/${uid}/${name}/image`).put(imageFile.data, {contentType: imageFile.contentType}); 
-    Firebase.storage().ref(`/${uid}/${name}/audio`).put(audioFile.data, {contentType: audioFile.contentType}); 
+    console.log(imageFile);
+    Firebase.storage().ref(`/${uid}/${name}/image.bmp`).put(imageFile.binary, {contentType: imageFile.contentType}); 
+    Firebase.storage().ref(`/${uid}/${name}/audio.wav`).put(audioFile.binary, {contentType: audioFile.contentType}); 
     setMessage(`Uploaded macro ${name}`);
     console.log('files uploaded!');
   }
@@ -217,6 +217,53 @@ function App() {
           }
         </DropdownButton>
         <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 10" onSelect={ macro => {layout[9] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        </div>
+        <div className='Row'>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 11" onSelect={ macro => {layout[10] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 12" onSelect={ macro => {layout[11] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 13" onSelect={ macro => {layout[12] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 14" onSelect={ macro => {layout[13] = macro;} }>
+          {
+            macroList.map( macro => {
+              return (
+                <Dropdown.Item key={macro} eventKey={macro}>{macro}<br/></Dropdown.Item>
+              );
+            })
+          }
+        </DropdownButton>
+        <DropdownButton className='PaddedButton' id="dropdown-basic-button" title="Select Macro 15" onSelect={ macro => {layout[14] = macro;} }>
           {
             macroList.map( macro => {
               return (
